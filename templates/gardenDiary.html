@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load staticfiles%}
 
 {% block jumbotron %}
 <div class="jumbotron">
     <p class="center">
-        <img class="logo_jumbotron" src="" />
+        <img class="logo_jumbotron" src="{% static 'img/gardenShare_logo.png' %}" />
     </p>
     <p>Garden Share lets you track all you gardening success (and failures) and if you like you can share your gardening experience with your friends and followers.</p>
     <p class="center">
