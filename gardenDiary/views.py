@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 
 def home(request):
@@ -14,3 +13,10 @@ def gardenDiary(request):
         "title": "Garden Diary",
     }
     return render(request, "gardenDiary.html", context)
+
+def gardeners(request):
+
+    context = {
+        "title": "Gardeners",
+    }
+    return render(request, "gardeners.html", context)
