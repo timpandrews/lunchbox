@@ -10,7 +10,7 @@
     <small>{{ post.id }}</small><br/>
     {{ post.title }}<br/>
     {{ post.content }}<br/><br/>
-    <a href="{% url 'gardenDiary:detail' id=post.id %}" class="btn btn-primary" role="button">View Detail</a>
+    <a href="{{ post.get_absolute_url }}" class="btn btn-primary" role="button">View Detail</a>
     <br><br>
     <hr/>
 
