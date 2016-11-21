@@ -1,6 +1,6 @@
 from django.conf.urls import url
-from gardenDiary.views import (home, )
+from gardenDiary.views import (home, gardenDiary)
 
 urlpatterns = [
-    url(r'^$', home, name="home"),
+    url(r'^$', gardenDiary, name="gardenDiary"),
 ]
