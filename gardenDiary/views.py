@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from gardenDiary.forms import postForm
 from gardenDiary.models import post
@@ -71,9 +71,9 @@ def gardenDiary_detail(request,id=None):
     }
     return render(request, "gardenDiary_detail.html", context)
 
-def gardenDiary_delete(request):
+def gardenDiary_delete(request, id=None):
 
-    context = {
-        "title": "Garden Diary: delete",
-    }
-    return render(request, "gardenDiary.html", context)
+    objRS = get_object_or_404(post, id=id)
+    objRS.delete()
+    messages.success(request, "Success: Record Deleted")
+    return redirect("gardenDiary:list")

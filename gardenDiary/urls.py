@@ -8,9 +8,9 @@ from gardenDiary.views import (
 )
 
 urlpatterns = [
-    url(r'^$', gardenDiary, name="gardenDiary"),
+    url(r'^$', gardenDiary, name="list"),
     url(r'^create/$', gardenDiary_create, name="create"),
     url(r'^(?P<id>\d+)/edit/$', gardenDiary_update, name="update"),
     url(r'^(?P<id>\d+)/$', gardenDiary_detail, name="detail"),
-    url(r'^delete/', gardenDiary_delete, name="delete"),
+    url(r'^(?P<id>\d+)/delete/', gardenDiary_delete, name="delete"),
 ]
