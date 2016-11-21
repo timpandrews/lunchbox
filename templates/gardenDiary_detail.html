@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load staticfiles%}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+<small>{{ post.id }}</small><br/>
+{{ post.title }}<br/>
+{{ post.content }}<br/><br/>
+
+{% endblock %}

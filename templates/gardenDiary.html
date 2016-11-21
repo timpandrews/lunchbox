@@ -3,6 +3,14 @@
 
 {% block content %}
 
-    <h1>{{ title }}</h1>
+<h1>{{ title }}</h1>
+
+{% for post in posts %}
+
+    <small>{{ post.id }}</small><br/>
+    {{ post.title }}<br/>
+    {{ post.content }}<br/><br/>
+
+{% endfor %}
 
 {% endblock %}

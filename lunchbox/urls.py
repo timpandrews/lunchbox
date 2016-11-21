@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name="home"),
     url(r'^gardenDiary/', include("gardenDiary.urls")),
-    url(r'^gardeners/', gardeners, name="garderners")
+    url(r'^gardeners/', gardeners, name="garderners"), # add namespace when I create new app
 ]
 
 if settings.DEBUG:
