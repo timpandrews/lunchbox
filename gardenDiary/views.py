@@ -43,12 +43,22 @@ def gardenDiary_create(request):
     }
     return render(request, "gardenDiary_form.html", context)
 
-def gardenDiary_update(request):
+def gardenDiary_update(request, id=None):
+    objRS = get_object_or_404(post, id=id)
+
+    form = postForm(request.POST or None, instance=objRS)
+
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {
         "title": "Garden Diary: update",
+        "post": objRS,
+        "form": form
     }
-    return render(request, "gardenDiary.html", context)
+    return render(request, "gardenDiary_form.html", context)
 
 def gardenDiary_detail(request,id=None):
     objRS = get_object_or_404(post, id=id)

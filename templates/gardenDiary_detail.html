@@ -9,6 +9,8 @@
     {{ post.title }}<br/>
     {{ post.content }}<br/><br/>
     <hr/>
+    <a href="{{ request.build_absolute_uri }}delete" class="btn btn-success" role="button"><i class="fa fa-times" aria-hidden="true"></i> delete</a>
+    <a href="{{ request.build_absolute_uri }}edit" class="btn btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> edit</a>
     <a href="{% url 'gardenDiary:gardenDiary' %}" class="btn btn-success" role="button"><i class="fa fa-chevron-left" aria-hidden="true"></i> Return to Feed</a>
 
 
