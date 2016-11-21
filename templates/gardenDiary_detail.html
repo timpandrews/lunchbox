@@ -3,10 +3,13 @@
 
 {% block content %}
 
-<h1>{{ title }}</h1>
+    <h1>{{ title }}</h1>
 
-<small>{{ post.id }}</small><br/>
-{{ post.title }}<br/>
-{{ post.content }}<br/><br/>
+    <small>{{ post.id }}</small><br/>
+    {{ post.title }}<br/>
+    {{ post.content }}<br/><br/>
+    <hr/>
+    <a href="{% url 'gardenDiary:gardenDiary' %}" class="btn btn-success" role="button"><i class="fa fa-chevron-left" aria-hidden="true"></i> Return to Feed</a>
+
 
 {% endblock %}

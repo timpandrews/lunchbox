@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<br>
+<div class="col-sm-6 col-sm-offset-3">
+    <h1>{{ title }}</h1>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if 'create' in request.build_absolute_uri %}
+            <input type="submit" class="btn btn-success" value="Create Post">
+        {% else %}
+            <input type="submit" class="btn btn-success" value="Update Post">
+        {% endif %}
+        &nbsp;
+        <a href='{% url "gardenDiary:gardenDiary" %}' class="btn btn-success" role="button">cancel</a>
+    </form>
+</div>
+
+{% endblock %}

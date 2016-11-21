@@ -1,4 +1,7 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+
+from gardenDiary.forms import postForm
 from gardenDiary.models import post
 
 ### Home #######################
@@ -27,11 +30,18 @@ def gardenDiary(request):
     return render(request, "gardenDiary.html", context)
 
 def gardenDiary_create(request):
+    form = postForm(request.POST or None)
+
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {
         "title": "Garden Diary: addNew",
+        "form": form,
     }
-    return render(request, "gardenDiary.html", context)
+    return render(request, "gardenDiary_form.html", context)
 
 def gardenDiary_update(request):
 
