@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -23,11 +24,24 @@ def gardeners(request):
 
 ### Garden Diary ###############
 def gardenDiary_list(request):
-    objRS = post.objects.all()
+    objRS = post.objects.all().order_by("-timestamp")
+    paginator = Paginator(objRS, 3) # Show 3 items per page
+
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        posts = paginator.page(paginator.num_pages)
+
     context = {
         "title": "Garden Diary: Feed",
-        "posts": objRS,
+        "posts": posts,
     }
+
     return render(request, "gardenDiary_list.html", context)
 
 def gardenDiary_create(request):
