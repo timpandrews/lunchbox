@@ -22,13 +22,13 @@ def gardeners(request):
 
 
 ### Garden Diary ###############
-def gardenDiary(request):
+def gardenDiary_list(request):
     objRS = post.objects.all()
     context = {
         "title": "Garden Diary: Feed",
         "posts": objRS,
     }
-    return render(request, "gardenDiary.html", context)
+    return render(request, "gardenDiary_list.html", context)
 
 def gardenDiary_create(request):
     form = postForm(request.POST or None)

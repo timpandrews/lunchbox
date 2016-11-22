@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load staticfiles%}
+
+{% block content %}
+
+<div class="col-sm-6 col-sm-offset-3">
+    <h1>{{ title }}</h1>
+
+    <a href="{% url 'gardenDiary:create' %}" class="btn btn-success" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
+    <br/><br/>
+
+    {% for post in posts %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="thumbnail">
+                    <small>{{ post.id }}</small><br/>
+                    {{ post.title }}<br/>
+                    {{ post.content }}<br/><br/>
+                    <a href="{{ post.get_absolute_url }}" class="btn btn-success" role="button"><i class="fa fa-search-plus" aria-hidden="true"></i> View Detail</a>
+                </div> <!-- /thumbnail -->
+            </div> <!-- /col -->
+        </div> <!-- /row -->
+    {% endfor %}
+
+</div> <!-- /col -->
+
+{% endblock %}

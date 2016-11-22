@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from gardenDiary.views import (
-    gardenDiary,
+    gardenDiary_list,
     gardenDiary_create,
     gardenDiary_update,
     gardenDiary_detail,
@@ -8,7 +8,7 @@ from gardenDiary.views import (
 )
 
 urlpatterns = [
-    url(r'^$', gardenDiary, name="list"),
+    url(r'^$', gardenDiary_list, name="list"),
     url(r'^create/$', gardenDiary_create, name="create"),
     url(r'^(?P<id>\d+)/edit/$', gardenDiary_update, name="update"),
     url(r'^(?P<id>\d+)/$', gardenDiary_detail, name="detail"),
