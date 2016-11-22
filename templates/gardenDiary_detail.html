@@ -8,9 +8,17 @@
     {% if post.badge %}
         <img src="{{ post.badge.url }}" class="img-responsive" />
     {% endif %}
-    <small>{{ post.id }}</small><br/>
-    {{ post.title }}<br/>
-    {{ post.content }}<br/><br/>
+    <small>{{ post.id }}</small>
+    <h2>{{ post.title }}</h2>
+    <p>
+        Author:
+        {% if post.user.get_full_name %}
+            {{ post.user.get_full_name }}
+        {% else %}
+            {{ post.user }}
+        {% endif %}
+    </p>
+    <p>{{ post.content|linebreaks }}</p>
     <hr/>
     <a href="{{ request.build_absolute_uri }}delete" class="btn btn-success" role="button"><i class="fa fa-times" aria-hidden="true"></i> delete</a>
     <a href="{{ request.build_absolute_uri }}edit" class="btn btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> edit</a>

@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 
 from gardenDiary.forms import postForm
@@ -45,10 +45,14 @@ def gardenDiary_list(request):
     return render(request, "gardenDiary_list.html", context)
 
 def gardenDiary_create(request):
+    if not request.user.is_authenticated:
+        raise Http404
+
     form = postForm(request.POST or None, request.FILES or None)
 
     if form.is_valid():
         instance = form.save(commit=False)
+        instance.user = request.user
         instance.save()
         messages.success(request, "Successfully Created")
         return HttpResponseRedirect(instance.get_absolute_url())
@@ -60,6 +64,9 @@ def gardenDiary_create(request):
     return render(request, "gardenDiary_form.html", context)
 
 def gardenDiary_update(request, id=None):
+    if not request.user.is_authenticated:
+        raise Http404
+
     objRS = get_object_or_404(post, id=id)
 
     form = postForm(request.POST or None, request.FILES or None, instance=objRS)
@@ -86,6 +93,8 @@ def gardenDiary_detail(request,id=None):
     return render(request, "gardenDiary_detail.html", context)
 
 def gardenDiary_delete(request, id=None):
+    if not request.user.is_authenticated:
+        raise Http404
 
     objRS = get_object_or_404(post, id=id)
     objRS.delete()

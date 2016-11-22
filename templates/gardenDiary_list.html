@@ -21,8 +21,15 @@
                             <small>({{ post.id }})</small>
                             {{ post.title }}
                         </h3>
-                        <br/>
-                        <p>{{ post.content }}</p>
+                        <p>
+                            Author:
+                            {% if post.user.get_full_name %}
+                                {{ post.user.get_full_name }}
+                            {% else %}
+                                {{ post.user }}
+                            {% endif %}
+                        </p>
+                        <p>{{ post.content|linebreaks|truncatechars:120 }}</p>
                         <a href="{{ post.get_absolute_url }}" class="btn btn-success" role="button"><i class="fa fa-search-plus" aria-hidden="true"></i> View Detail</a>
                 </div> <!-- /thumbnail -->
             </div> <!-- /col -->
