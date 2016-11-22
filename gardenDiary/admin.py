@@ -11,6 +11,7 @@ class postAdmin(admin.ModelAdmin):
         "updated",
     ]
     list_display_links = ["title"]
+    ordering = ["-id"]
     class Meta:
         model = post
 
