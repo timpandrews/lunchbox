@@ -5,6 +5,9 @@
 
     <h1>{{ title }}</h1>
 
+    {% if post.badge %}
+        <img src="{{ post.badge.url }}" class="img-responsive" />
+    {% endif %}
     <small>{{ post.id }}</small><br/>
     {{ post.title }}<br/>
     {{ post.content }}<br/><br/>

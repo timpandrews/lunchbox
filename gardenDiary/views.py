@@ -45,7 +45,7 @@ def gardenDiary_list(request):
     return render(request, "gardenDiary_list.html", context)
 
 def gardenDiary_create(request):
-    form = postForm(request.POST or None)
+    form = postForm(request.POST or None, request.FILES or None)
 
     if form.is_valid():
         instance = form.save(commit=False)
@@ -62,12 +62,12 @@ def gardenDiary_create(request):
 def gardenDiary_update(request, id=None):
     objRS = get_object_or_404(post, id=id)
 
-    form = postForm(request.POST or None, instance=objRS)
+    form = postForm(request.POST or None, request.FILES or None, instance=objRS)
 
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
-        message.sucess(request, "Successfully Updated")
+        messages.success(request, "Successfully Updated")
         return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {
