@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load staticfiles%}
+
+{% block content %}
+
+    <h1>{{ title }}</h1>
+
+    {% if post.badge %}
+        <img src="{{ post.badge.url }}" class="img-responsive" />
+    {% endif %}
+    <small>{{ post.id }}</small>
+    <h2>{{ post.title }}</h2>
+    <p>
+        Author:
+        {% if post.user.get_full_name %}
+            {{ post.user.get_full_name }}
+        {% else %}
+            {{ post.user }}
+        {% endif %}
+    </p>
+
+    <!-- facebook like/share button -->
+    <p>
+        <div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    </p>
+
+    <p>
+        <a class="btn btn-info" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+            <i class="fa fa-share" aria-hidden="true"></i>
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+
+        <a class="btn btn-info" target="_blank" href="https://twitter.com/home?status={{ post.content|truncatechars:50 }}%20{{ request.build_absolute_uri }}">
+            <i class="fa fa-share" aria-hidden="true"></i>
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+    </p>
+
+    <p>{{ post.content|linebreaks }}</p>
+    <hr/>
+    <a href="{{ request.build_absolute_uri }}delete" class="btn btn-success" role="button"><i class="fa fa-times" aria-hidden="true"></i> delete</a>
+    <a href="{{ request.build_absolute_uri }}edit" class="btn btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> edit</a>
+    <a href="{% url 'gardenDiary:list' %}" class="btn btn-success" role="button"><i class="fa fa-chevron-left" aria-hidden="true"></i> Return to Feed</a>
+
+    <!-- facebook comments -->
+    <div class="fb-comments col-sm-12" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
+
+{% endblock %}

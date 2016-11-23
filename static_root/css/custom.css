@@ -47,7 +47,11 @@ body {
     height: 325px;
 }
 
-.btn-pricing{
+.btn-pricing {
     position: absolute;
     bottom:0;
+}
+
+.feed_badge {
+    max-height: 50px;
 }
