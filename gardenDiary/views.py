@@ -1,10 +1,13 @@
 from django.contrib import messages
+from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.mail import send_mail
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 
 from gardenDiary.forms import postForm
 from gardenDiary.models import post
+
 
 ### Home #######################
 def home(request):
