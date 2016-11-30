@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'smtp.sparkpostmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'SMTP_Injection'
+EMAIL_HOST_PASSWORD = '4a77c3af84091cc98ba8f066ed3db1dea0816674'
+EMAIL_USE_TLS = True
 
 # Application definition
 
@@ -35,10 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Third Party Apps
     'crispy_forms',
+    'registration',
     # Local App
     'gardenDiary'
 ]
@@ -130,3 +137,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media_root")
+
+
+##### 3rd Party Settings ####
+
+# Crispy Forms
+CRISPY_TEMPLATE_PACK = "bootstrap3"
+
+# Registration-Redux
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+REGISTRATION_EMAIL_HTML = True
+REGISTRATION_DEFAULT_FROM_EMAIL = "postmaster@timandrewssolutions.com"
+SITE_ID = 1
+LOGIN_REDIRECT_URL = "/"
+
+
+
