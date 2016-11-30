@@ -27,8 +27,8 @@ def gardeners(request):
 
 ### Garden Diary ###############
 def gardenDiary_list(request):
-    objRS = post.objects.all().order_by("-timestamp")
-    paginator = Paginator(objRS, 3) # Show 3 items per page
+    obj = post.objects.all().order_by("-timestamp")
+    paginator = Paginator(obj, 5) # Show n items per page
 
     page = request.GET.get('page')
     try:
@@ -70,9 +70,15 @@ def gardenDiary_update(request, id=None):
     if not request.user.is_authenticated:
         raise Http404
 
-    objRS = get_object_or_404(post, id=id)
+    try:
+        obj = post.objects.get(id=id)
+    except:
+        raise Http404
 
-    form = postForm(request.POST or None, request.FILES or None, instance=objRS)
+    if obj.user != request.user:
+        raise Http404
+
+    form = postForm(request.POST or None, request.FILES or None, instance=obj)
 
     if form.is_valid():
         instance = form.save(commit=False)
@@ -82,16 +88,20 @@ def gardenDiary_update(request, id=None):
 
     context = {
         "title": "Garden Diary: update",
-        "post": objRS,
+        "post": obj,
         "form": form
     }
     return render(request, "gardenDiary_form.html", context)
 
 def gardenDiary_detail(request,id=None):
-    objRS = get_object_or_404(post, id=id)
+    try:
+        obj = post.objects.get(id=id)
+    except:
+        raise Http404
+
     context = {
         "title": "Garden Diary: viewDetail",
-        "post": objRS,
+        "post": obj,
     }
     return render(request, "gardenDiary_detail.html", context)
 
@@ -99,7 +109,14 @@ def gardenDiary_delete(request, id=None):
     if not request.user.is_authenticated:
         raise Http404
 
-    objRS = get_object_or_404(post, id=id)
-    objRS.delete()
+    try:
+        obj = post.objects.get(id=id)
+    except:
+        raise Http404
+
+    if obj.user != request.user:
+        raise Http404
+
+    obj.delete()
     messages.success(request, "Success: Record Deleted")
     return redirect("gardenDiary:list")
