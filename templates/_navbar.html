@@ -19,13 +19,13 @@
                 <li><a href="/gardeners">Gardeners</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-               <!-- { % if session['username'] %}
-                    <li class="welcomeUser">Welcome { { session['username'] }}</li>
-                    <li><a href="">Logout</a></li>
-                { % else %} -->
-                    <li><a href="">Login</a></li>
-                    <li><a href="">Sign Up</a></li>
-                <!--{ % endif %} -->
+                {% if request.user.is_authenticated %}
+                    <li class="welcomeUser">Welcome</li>
+                    <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'auth_login' %}">Login</a></li>
+                    <li><a href="{% url 'registration_register' %}">Sign Up</a></li>
+                {% endif %}
             </ul>
         </div><!--/.nav-collapse -->
 
