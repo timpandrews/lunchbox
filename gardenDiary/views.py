@@ -24,6 +24,14 @@ def gardeners(request):
     }
     return render(request, "gardeners.html", context)
 
+### Tools ##################
+def tools(request):
+
+    context = {
+        "title": "Tools",
+    }
+    return render(request, "tools.html", context)
+
 
 ### Garden Diary ###############
 def gardenDiary_list(request):
