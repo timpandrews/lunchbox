@@ -27,11 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-EMAIL_HOST = 'smtp.sparkpostmail.com'
+# MailGun
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'admin@sandbox742b97f1363d4b31a3d2bc8b2ba8f12c.mailgun.org'
+EMAIL_HOST_PASSWORD = '3mbHv8pR'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'SMTP_Injection'
-EMAIL_HOST_PASSWORD = '4a77c3af84091cc98ba8f066ed3db1dea0816674'
-EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'admin@sandbox742b97f1363d4b31a3d2bc8b2ba8f12c.mailgun.org'
+EMAIL_USER_TSL = True
 
 # Application definition
 
@@ -45,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third Party Apps
     'crispy_forms',
-    'registration',
     # Local App
     'gardenDiary'
 ]
@@ -143,14 +144,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media_root")
 
 # Crispy Forms
 CRISPY_TEMPLATE_PACK = "bootstrap3"
-
-# Registration-Redux
-ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_AUTO_LOGIN = True
-REGISTRATION_EMAIL_HTML = True
-REGISTRATION_DEFAULT_FROM_EMAIL = "postmaster@timandrewssolutions.com"
-SITE_ID = 1
-LOGIN_REDIRECT_URL = "/"
 
 
 
