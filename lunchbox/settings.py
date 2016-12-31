@@ -46,12 +46,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Third Party Apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'crispy_forms',
     # Local App
     'gardenDiary'
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -144,6 +155,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media_root")
 
 # Crispy Forms
 CRISPY_TEMPLATE_PACK = "bootstrap3"
+
+# django-allAuth
+
 
 
 

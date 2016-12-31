@@ -7,6 +7,7 @@ from gardenDiary.views import home, gardeners, tools
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name="home"),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^gardenDiary/', include("gardenDiary.urls", namespace="gardenDiary")),
     url(r'^gardeners/', gardeners, name="garderners"), # add namespace when I create new app
     url(r'^tools/', tools, name="tools"), # add namespace when I create new app
