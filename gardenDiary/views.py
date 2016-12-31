@@ -1,7 +1,5 @@
 from django.contrib import messages
-from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.core.mail import send_mail
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -78,13 +76,7 @@ def gardenDiary_update(request, id=None):
     if not request.user.is_authenticated:
         raise Http404
 
-    try:
-        obj = post.objects.get(id=id)
-    except:
-        raise Http404
-
-    if obj.user != request.user:
-        raise Http404
+    obj = get_object_or_404(post, id=id)
 
     form = postForm(request.POST or None, request.FILES or None, instance=obj)
 
@@ -102,10 +94,7 @@ def gardenDiary_update(request, id=None):
     return render(request, "gardenDiary_form.html", context)
 
 def gardenDiary_detail(request,id=None):
-    try:
-        obj = post.objects.get(id=id)
-    except:
-        raise Http404
+    obj = get_object_or_404(post, id=id)
 
     context = {
         "title": "Garden Diary: viewDetail",
@@ -117,13 +106,7 @@ def gardenDiary_delete(request, id=None):
     if not request.user.is_authenticated:
         raise Http404
 
-    try:
-        obj = post.objects.get(id=id)
-    except:
-        raise Http404
-
-    if obj.user != request.user:
-        raise Http404
+    obj = get_object_or_404(post, id=id)
 
     obj.delete()
     messages.success(request, "Success: Record Deleted")
