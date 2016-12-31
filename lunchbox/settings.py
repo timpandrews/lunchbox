@@ -156,7 +156,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media_root")
 # Crispy Forms
 CRISPY_TEMPLATE_PACK = "bootstrap3"
 
-
+# django-allAuth
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+LOGIN_REDIRECT_URL = "/"
 
 
 
