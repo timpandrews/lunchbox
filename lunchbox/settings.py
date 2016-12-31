@@ -156,7 +156,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media_root")
 # Crispy Forms
 CRISPY_TEMPLATE_PACK = "bootstrap3"
 
-# django-allAuth
 
 
 
