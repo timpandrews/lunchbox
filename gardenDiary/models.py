@@ -3,10 +3,12 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models.signals import post_save
 
 
 def upload_location(instance, filename):
     return "%s/%s" %(instance.user_id, filename)
+
 
 class post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
@@ -25,3 +27,23 @@ class post(models.Model):
     # returns the url (in the gardenDiary app) for new records
     def get_absolute_url(self):
         return reverse("gardenDiary:detail", kwargs={"id": self.id})
+
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    profile_field1 = models.CharField(max_length=120, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.user.username)
+
+    def __unicode__(self):
+        return str(self.user.username)
+
+def post_save_user_model_receiver(sender, instance, created, *args, **kwargs):
+    if created:
+        try:
+            Profile.objects.create(user=instance)
+        except:
+            pass
+post_save.connect(post_save_user_model_receiver, sender=settings.AUTH_USER_MODEL)
