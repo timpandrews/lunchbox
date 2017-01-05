@@ -30,9 +30,9 @@ class post(models.Model):
 
 
 
-class Profile(models.Model):
+class profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
-    profile_field1 = models.CharField(max_length=120, null=True, blank=True)
+    gardenerDesc = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return str(self.user.username)
@@ -43,7 +43,7 @@ class Profile(models.Model):
 def post_save_user_model_receiver(sender, instance, created, *args, **kwargs):
     if created:
         try:
-            Profile.objects.create(user=instance)
+            profile.objects.create(user=instance)
         except:
             pass
 post_save.connect(post_save_user_model_receiver, sender=settings.AUTH_USER_MODEL)

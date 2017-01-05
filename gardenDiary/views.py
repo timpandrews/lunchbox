@@ -14,14 +14,6 @@ def home(request):
     }
     return render(request, "home.html", context)
 
-### Gardeners ##################
-def gardeners(request):
-
-    context = {
-        "title": "Gardeners",
-    }
-    return render(request, "gardeners.html", context)
-
 ### Tools ##################
 def tools(request):
 

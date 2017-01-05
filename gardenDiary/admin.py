@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from gardenDiary.models import post
-from gardenDiary.models import Profile
+from gardenDiary.models import profile
 
 class postAdmin(admin.ModelAdmin):
     list_display = [
@@ -18,4 +18,4 @@ class postAdmin(admin.ModelAdmin):
 
 
 admin.site.register(post, postAdmin)
-admin.site.register(Profile)
+admin.site.register(profile)
