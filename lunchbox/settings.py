@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     # Local App
-    'gardenDiary'
+    'gardenDiary',
+    'gardenList',
 ]
 
 SITE_ID = 1
