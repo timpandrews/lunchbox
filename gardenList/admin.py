@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from gardenList.models import following
+
+admin.site.register(following)
