@@ -32,7 +32,7 @@ class post(models.Model):
 
 class profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
-    gardenerDesc = models.TextField(null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return str(self.user.username)

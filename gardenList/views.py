@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 ### Gardeners ##################
 def gardeners(request):
 
-    obj = User.objects.all()
+    obj = User.objects.all().select_related('profile')
     paginator = Paginator(obj, 5) # Show n items per page
 
     page = request.GET.get('page')

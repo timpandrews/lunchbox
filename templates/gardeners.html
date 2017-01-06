@@ -6,7 +6,11 @@
     <h1>{{ title }}</h1>
 
     {% for gardener in gardenersList %}
-        {{ gardener }}
+        <b>{{ gardener }}</b><br>
+        {{ gardener.email }}<br>
+        {{ gardener.first_name }}&nbsp;{{ gardener.last_name }}<br>
+        Desc: {{ gardener.profile.bio }}<br>
+        <hr>
     {% endfor %}
 
 {% endblock %}
