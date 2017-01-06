@@ -53,5 +53,12 @@ body {
 }
 
 .feed_badge {
+    max-height: 100px;
+}
+.feed_badgeContainer {
+    text-align: left;
+}
+
+.user_avatar {
     max-height: 50px;
 }

@@ -3,14 +3,23 @@
 
 {% block content %}
 
-    <h1>{{ title }}</h1>
+    <div class="col-sm-6 col-sm-offset-3">
 
-    {% for gardener in gardenersList %}
-        <b>{{ gardener }}</b><br>
-        {{ gardener.email }}<br>
-        {{ gardener.first_name }}&nbsp;{{ gardener.last_name }}<br>
-        Desc: {{ gardener.profile.bio }}<br>
-        <hr>
-    {% endfor %}
+        <h1>{{ title }}</h1>
+
+        {% for gardener in gardenersList %}
+            <div class="col-sm-12">
+                <div class="thumbnail">
+                    <!-- Profile Avatar -->
+                    <img src="{% static 'img/userAvatar_generic.png' %}" class="feed_badge user_avatar img-responsive img-rounded "/>
+                    <div class="caption">
+                        <h3>{{ gardener }}</h3>
+                        Bio: {{ gardener.profile.bio }}
+                    </div><!-- /caption -->
+                </div> <!-- /thumbnail -->
+            </div>
+        {% endfor %}
+
+    </div>
 
 {% endblock %}

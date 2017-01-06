@@ -58,3 +58,7 @@ body {
 .feed_badgeContainer {
     text-align: left;
 }
+
+.user_avatar {
+    max-height: 50px;
+}
