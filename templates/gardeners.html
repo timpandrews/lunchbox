@@ -17,10 +17,28 @@
                     <div class="caption">
                         <h3>{{ gardener }}</h3>
                         Bio: {{ gardener.profile.bio }}
+                        <hr>
+                        <a class="btn btn-success">follow</a>
                     </div><!-- /caption -->
                 </div> <!-- /thumbnail -->
             </div>
         {% endfor %}
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if gardenersList.has_previous %}
+                    <a class="btn btn-link" href="?page={{ gardenersList.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i> previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ gardenersList.number }} of {{ gardenersList.paginator.num_pages }}
+                </span>
+
+                {% if gardenersList.has_next %}
+                    <a class="btn btn-link" href="?page={{ gardenersList.next_page_number }}">next <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                {% endif %}
+            </span>
+        </div>
 
     </div>
 

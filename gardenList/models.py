@@ -4,8 +4,12 @@ from django.conf import settings
 from django.db import models
 
 class following(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
-    followingID = models.IntegerField()
+    account = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='account', default=1)
+    following = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='following', default=1)
+
+    def __str__(self):
+        return str(self.account)
 
     def __unicode__(self):
-        return self.title
+        return str(self.account)
+
