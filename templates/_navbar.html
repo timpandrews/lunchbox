@@ -22,7 +22,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                    <li class="welcomeUser">Welcome {% user_display user %}</li>
+                    <li class="welcomeUser">Welcome <a href="/profiles/{{ user.username }}">{% user_display user %}</a></li>
                     <li><a href="/accounts/logout/ ">Logout</a></li>
                 {% else %}
                     <li><a href="/accounts/login/">Login</a></li>

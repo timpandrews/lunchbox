@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # Local App
     'gardenDiary',
     'gardenList',
+    'profiles',
 ]
 
 SITE_ID = 1

@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^$', home, name="home"),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^gardenDiary/', include("gardenDiary.urls", namespace="gardenDiary")),
+    url(r'^profiles/', include("profiles.urls", namespace="profiles")),
     url(r'^gardeners/', gardeners, name="garderners"), # add namespace when I create new app
     url(r'^tools/', tools, name="tools"), # add namespace when I create new app
 ]
